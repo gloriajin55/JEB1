@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f8fa">
+  <meta name="description" content="진은빈 프로필 — 스포츠 데이터 분석, 모션 분석, 선수 지도 경험">
+  <title>진은빈 | Profile</title>
+  <style>
+    :root {
+      --bg: #f7f8fa;
+      --surface: #ffffff;
+      --text: #17191d;
+      --muted: #626a75;
+      --line: #e4e7eb;
+      --accent: #2357d6;
+      --accent-soft: #edf2ff;
+      --nav-height: 72px;
+      --content-width: 1120px;
+      --radius: 20px;
+      --shadow: 0 16px 50px rgba(22, 34, 55, .06);
+    }
+    * { box-sizing: border-box; }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--nav-height) + 20px);
+    }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo",
+                   "Noto Sans KR", "Malgun Gothic", sans-serif;
+      line-height: 1.75;
+      letter-spacing: -0.018em;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    .skip-link {
+      position: fixed; left: 12px; top: -60px; z-index: 2000;
+      background: var(--text); color: #fff; padding: 10px 14px; border-radius: 8px;
+    }
+    .skip-link:focus { top: 12px; }
+    .site-header {
+      position: fixed; inset: 0 0 auto 0; height: var(--nav-height); z-index: 1000;
+      background: rgba(255,255,255,.88);
+      border-bottom: 1px solid rgba(228,231,235,.9);
+      backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+    }
+    .nav-wrap {
+      width: min(calc(100% - 48px), var(--content-width)); height: 100%;
+      margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    }
+    .brand {
+      flex: 0 0 auto; text-decoration: none; font-size: 15px; font-weight: 750;
+      letter-spacing: -.035em; white-space: nowrap;
+    }
+    .brand span { color: var(--accent); }
+    .nav-links {
+      display: flex; align-items: center; justify-content: flex-end; gap: 5px;
+      margin: 0; padding: 0; list-style: none;
+    }
+    .nav-links a {
+      display: inline-flex; align-items: center; min-height: 40px; padding: 0 12px;
+      color: #4e5662; font-size: 12px; font-weight: 650; text-decoration: none;
+      border-radius: 999px; white-space: nowrap; transition: color .2s, background .2s;
+    }
+    .nav-links a:hover, .nav-links a[aria-current="location"] {
+      color: var(--accent); background: var(--accent-soft);
+    }
+    .menu-toggle {
+      display: none; border: 1px solid var(--line); background: #fff; border-radius: 10px;
+      width: 42px; height: 42px; color: var(--text); font-size: 20px; cursor: pointer;
+    }
+    main { padding-top: var(--nav-height); }
+    .container { width: min(calc(100% - 48px), var(--content-width)); margin: 0 auto; }
+    section { padding: 96px 0; scroll-margin-top: calc(var(--nav-height) + 18px); }
+    .hero { padding: 88px 0 78px; }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(250px, .7fr); gap: 56px; align-items: center; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 9px; color: var(--accent);
+      font-size: 12px; font-weight: 750; text-transform: uppercase; letter-spacing: .13em;
+    }
+    .eyebrow::before { content: ""; width: 24px; height: 2px; background: var(--accent); }
+    h1 { margin: 18px 0 10px; font-size: clamp(44px, 7vw, 76px); line-height: 1.08; letter-spacing: -.07em; font-weight: 780; }
+    .major { margin: 0; color: var(--muted); font-size: clamp(16px, 2vw, 20px); font-weight: 550; }
+    .tagline { margin: 30px 0 0; font-size: clamp(22px, 3vw, 32px); line-height: 1.45; letter-spacing: -.045em; font-weight: 650; max-width: 620px; }
+    .hero-note { margin: 22px 0 0; color: var(--muted); max-width: 640px; font-size: 15px; }
+    .hero-card {
+      min-height: 310px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 32px; background: linear-gradient(145deg, #fff, #f0f3f9); border: 1px solid var(--line);
+      border-radius: 28px; box-shadow: var(--shadow); text-align: center;
+    }
+    
+    .avatar-img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #fff;
+      box-shadow: 0 8px 20px rgba(0,0,0,.08);
+    }
+    
+    .hero-card strong { margin-top: 14px; font-size: 18px; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 34px; }
+    .section-kicker { color: var(--accent); font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+    h2 { margin: 5px 0 0; font-size: clamp(30px, 4vw, 44px); line-height: 1.2; letter-spacing: -.055em; }
+    .panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 30px; }
+    .about-copy { font-size: 17px; line-height: 1.95; margin: 0; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+    .info-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; min-width: 0; }
+    .info-card h3, .panel h3 { margin: 0 0 12px; font-size: 17px; letter-spacing: -.035em; color: var(--text); }
+    .info-card p, .panel p { margin: 0; color: var(--muted); font-size: 14px; }
+    .pill-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .pill { display: inline-flex; padding: 6px 11px; border-radius: 999px; background: #f0f2f5; color: #454d58; font-size: 12px; font-weight: 650; }
+    .timeline { display: grid; gap: 0; }
+    .timeline-item { display: grid; grid-template-columns: 175px minmax(0, 1fr); gap: 28px; padding: 25px 0; border-bottom: 1px solid var(--line); }
+    .timeline-item:first-child { padding-top: 0; }
+    .timeline-item:last-child { border-bottom: 0; padding-bottom: 0; }
+    .timeline-date { color: var(--accent); font-size: 13px; font-weight: 750; }
+    .timeline-content h3 { margin: 0 0 5px; font-size: 17px; }
+    .timeline-content p { margin: 0; color: var(--muted); font-size: 14px; }
+
+    .timeline-item.single-line { display: flex; align-items: center; gap: 16px; padding: 16px 0; }
+    .timeline-item.single-line .timeline-date { flex: 0 0 auto; width: 80px; }
+    .timeline-item.single-line .timeline-content { flex: 1; display: flex; align-items: center; }
+    .timeline-item.single-line .timeline-content h3 { margin: 0; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    .number { display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-size: 12px; font-weight: 800; margin-bottom: 14px; }
+    .experience-block { margin-top: 18px; }
+    .experience-block:first-of-type { margin-top: 0; }
+    .experience-block h3 { margin: 0 0 8px; font-size: 18px; }
+    .experience-block p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.9; }
+    
+    .quote-panel { background: var(--surface); color: var(--text); border: 1px solid var(--line); border-radius: var(--radius); padding: 34px; }
+    .quote-panel p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.75; }
+    
+    .tool-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+    .tool { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 23px 18px; font-size: 15px; font-weight: 700; }
+    .tool small { display: block; margin-top: 6px; color: var(--muted); font-size: 11px; font-weight: 500; }
+    .contact-panel { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .email { overflow-wrap: anywhere; color: var(--accent); font-weight: 650; text-decoration: none; }
+    .email:hover { text-decoration: underline; }
+    .contact-label { color: var(--muted); font-size: 12px; font-weight: 700; }
+    footer { border-top: 1px solid var(--line); padding: 28px 0 38px; color: var(--muted); font-size: 12px; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 18px; }
+    @media (max-width: 960px) {
+      .nav-wrap { width: min(calc(100% - 32px), var(--content-width)); }
+      .nav-links { gap: 0; }
+      .nav-links a { padding: 0 8px; font-size: 11px; }
+      .hero-grid { gap: 28px; }
+      .grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      section { padding: 76px 0; }
+    }
+    @media (max-width: 720px) {
+      :root { --nav-height: 64px; }
+      .nav-wrap { width: calc(100% - 28px); }
+      .menu-toggle { display: inline-grid; place-items: center; }
+      .nav-links {
+        display: none; position: absolute; top: calc(var(--nav-height) - 1px); left: 0; right: 0;
+        padding: 10px 14px 16px; background: rgba(255,255,255,.98); border-bottom: 1px solid var(--line);
+        box-shadow: 0 16px 24px rgba(20,30,50,.08); align-items: stretch; flex-direction: column;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { min-height: 43px; padding: 0 13px; font-size: 13px; border-radius: 10px; }
+      .container { width: calc(100% - 32px); }
+      .hero { padding: 62px 0 50px; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-card { min-height: 220px; padding: 24px; }
+      .avatar-img { width: 110px; height: 110px; }
+      .section-head { display: block; }
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .panel, .info-card { padding: 23px; }
+      .timeline-item { grid-template-columns: 1fr; gap: 5px; padding: 20px 0; }
+      .timeline-item.single-line { gap: 10px; }
+      .tool-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .contact-panel { align-items: flex-start; flex-direction: column; }
+      .footer-inner { flex-direction: column; gap: 5px; }
+      section { padding: 64px 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">본문으로 바로가기</a>
+  <header class="site-header">
+    <nav class="nav-wrap" aria-label="주요 메뉴">
+      <a class="brand" href="#home" aria-label="진은빈 프로필 홈">JIN EUNBIN<span>.</span></a>
+      <button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="primary-menu">☰</button>
+      <ul class="nav-links" id="primary-menu">
+        <li><a href="#home">프로필</a></li>
+        <li><a href="#about">자기소개</a></li>
+        <li><a href="#education">학력·이력</a></li>
+        <li><a href="#experience">지도 경험</a></li>
+        <li><a href="#credentials">자격·수상</a></li>
+        <li><a href="#skills">프로그램</a></li>
+        <li><a href="#contact">연락처</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Profile / Sports & Technology</div>
+          <h1 id="hero-title">진은빈</h1>
+          <p class="major">서경대학교 융합대학 스포츠앤테크놀로지학과</p>
+          <p class="tagline">배움을 바탕으로 가능성을 넓혀가겠습니다.</p>
+          <p class="hero-note">스포츠 데이터 분석을 통해 선수의 경기력을 객관적으로 파악하고, 경기력 향상에 기여하고자 합니다.</p>
+        </div>
+        <aside class="hero-card" aria-label="프로필 이미지 영역">
+          <img class="avatar-img" src="KakaoTalk_20261014_135923774_3.jpg" alt="진은빈 프로필 사진">
+          <strong>진은빈</strong>
+        </aside>
+      </div>
+    </section>
+
+    <section id="about" aria-labelledby="about-title">
+      <div class="container">
+        <div class="section-head">
+          <div><div class="section-kicker">01 / About</div><h2 id="about-title">자기소개</h2></div>
+        </div>
+        <div class="panel">
+          <p class="about-copy">스포츠 데이터 분석을 통해 선수의 경기력을 객관적으로 파악하고, 경기력 향상에 기여하고자 합니다. 경기와 훈련 과정에서 수집되는 데이터를 분석하여 선수의 강점과 개선점을 발견하고, 이를 실질적인 훈련 방향과 경기 전략 수립에 활용할 수 있도록 돕는 것이 목표입니다. 앞으로 데이터 분석 역량과 스포츠에 대한 이해를 꾸준히 발전시켜, 데이터와 현장을 연결하고 선수의 성장을 지원하는 데이터 분석가로 성장하겠습니다.</p>
+        </div>
+        <div class="grid-3" style="margin-top:18px">
+          <article class="info-card">
+            <h3>관심 있는 분야</h3>
+            <p>모션 분석을 이용한 선수의 경기력 향상</p>
+            <div class="pill-list"><span class="pill">태권도</span><span class="pill">야구</span></div>
+          </article>
+          <article class="info-card">
+            <h3>알아보고 싶은 점</h3>
+            <p>모션 분석으로 선수의 경기력을 실질적으로 어디까지 올릴 수 있는지 궁금합니다.</p>
+          </article>
+          <article class="info-card">
+            <h3>희망 진로·직무</h3>
+            <p>데이터 분석가, 스포츠 코치</p>
+          </article>
+          <article class="info-card">
+            <h3>나의 강점</h3>
+            <p>일을 쉽게 그만두지 않습니다. 당장 가능성이 보이지 않더라도 꾸준히 노력하면 목표에 도달할 수 있다는 믿음으로 끝까지 도전합니다.</p>
+          </article>
+          <article class="info-card">
+            <h3>소통과 문제 해결</h3>
+            <p>다양한 사람을 만나는 일을 하여 소통에 문제가 없으며, 상대방의 말을 경청하고 문제가 있을 경우 해결방안을 제시할 수 있습니다.</p>
+          </article>
+          <article class="info-card">
+            <h3>가르치고 이끄는 일</h3>
+            <p>내가 가르친 사람의 성장한 모습이 보일 때 뿌듯하고 보람차다고 느낍니다.</p>
+          </article>
+        </div>
+        <div class="quote-panel" style="margin-top:18px">
+          <h3 style="margin-bottom: 8px;">관심 있는 역할과 자신의 강점의 연결점</h3>
+          <p>선수와 소통을 많이 하여 선수의 상태를 정확하게 알 수 있습니다. 만약 문제가 있을 시 빠른 대처가 가능합니다. 선수가 힘들어하더라도 할 수 있다는 믿음을 불어넣어주고 절대 포기하지 않습니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="education" aria-labelledby="education-title">
+      <div class="container">
+        <div class="section-head">
+          <div><div class="section-kicker">02 / Background</div><h2 id="education-title">학력 및 이력</h2></div>
+        </div>
+        <div class="panel">
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-date">2024.03–현재</div>
+              <div class="timeline-content"><h3>컴포즈 커피</h3><p>근무 경험</p></div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">2024.05–2026.02</div>
+              <div class="timeline-content"><h3>패스체대입시 학원 강사</h3><p>학생들의 체대입시 실기 종목 지도</p></div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">2025.04–2025.12</div>
+              <div class="timeline-content"><h3>서경대학교 창의산학교육원 소속 비교과 프로그램 서포터즈</h3><p>동아리·학생회·봉사·대외활동</p></div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">현재</div>
+              <div class="timeline-content"><h3>서경대학교 융합대학 스포츠앤테크놀로지학과</h3><p>3학년 재학</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" aria-labelledby="experience-title">
+      <div class="container">
+        <div class="section-head">
+          <div><div class="section-kicker">03 / Coaching</div><h2 id="experience-title">스포츠 활동 및 지도 경험</h2></div>
+        </div>
+        <div class="grid-2">
+          <article class="info-card">
+            <div class="number">01</div>
+            <h3>체대입시 학원 강사</h3>
+            <p>체대입시 학원에서 강사로 일하며 매년 약 50명의 학생들을 지도했습니다. 주로 10대 후반에서 20대 초반의 학생을 지도했습니다. 고등학교 1, 2학년의 경우 주로 보는 실기 종목을 다양하게 지도했습니다. 고등학교 3학년, N수생의 경우 학생 본인이 지원하는 대학의 실기 종목을 체계적으로 지도했습니다.</p>
+          </article>
+          <article class="info-card">
+            <div class="number">02</div>
+            <h3>공군항공과학고 입학 실기 개인 수업</h3>
+            <p>중학교 3학년 학생의 공군항공과학고 입학 실기를 위해 종목과 그에 맞는 맞춤 운동을 지도했습니다.</p>
+          </article>
+        </div>
+        <div class="panel experience-block">
+          <h3>일을 하며 느낀 점</h3>
+          <p>여러 학생을 지도해보니 10대 후반에서 20대 초반으로 연령대는 비슷하지만 학생마다 잘하는 부분과 못하는 부분, 실력을 늘리기 위한 의지, 습득하는 능력, 이해력 등 편차가 매우 크다는 것을 알게 되었습니다. 다양한 학생들을 각 학생 수준에 맞추어 설명해주고 지도해주다 보니 많은 경험을 할 수 있었습니다. 다양한 연령대도 지도해보고 싶습니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="credentials" aria-labelledby="credentials-title">
+      <div class="container">
+        <div class="section-head">
+          <div><div class="section-kicker">04 / Credentials</div><h2 id="credentials-title">자격 및 수상</h2></div>
+        </div>
+        <div class="grid-2">
+          <article class="info-card">
+            <h3>자격증</h3>
+            <div class="timeline">
+              <div class="timeline-item single-line"><div class="timeline-date">자격</div><div class="timeline-content"><h3>스포츠테이핑지도사 1급</h3></div></div>
+              <div class="timeline-item single-line"><div class="timeline-date">자격</div><div class="timeline-content"><h3>Peak Level 1</h3></div></div>
+              <div class="timeline-item single-line"><div class="timeline-date">자격</div><div class="timeline-content"><h3>생활스포츠지도사 2급 (태권도)</h3></div></div>
+              <div class="timeline-item single-line"><div class="timeline-date">자격</div><div class="timeline-content"><h3>자동차운전면허증(1종대형)</h3></div></div>
+            </div>
+          </article>
+          <article class="info-card">
+            <h3>교육·연수 이수</h3>
+            <div class="timeline">
+              <div class="timeline-item single-line"><div class="timeline-date">2025.11.26</div><div class="timeline-content"><h3>현직자 직무 특강 : 스포츠단 관리 및 운영</h3></div></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" aria-labelledby="skills-title">
+      <div class="container">
+        <div class="section-head">
+          <div><div class="section-kicker">05 / Tools</div><h2 id="skills-title">내가 사용할 수 있는 프로그램</h2></div>
+        </div>
+        <div class="tool-grid">
+          <div class="tool">Python<small>Programming</small></div>
+          <div class="tool">Arduino<small>Hardware / Prototyping</small></div>
+          <div class="tool">한글<small>Document editing</small></div>
+          <div class="tool">Excel<small>Spreadsheet</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="section-head">
+          <div><div class="section-kicker">06 / Contact</div><h2 id="contact-title">연락처 및 링크</h2></div>
+        </div>
+        <div class="panel contact-panel">
+          <div><div class="contact-label">이메일</div><a class="email" href="mailto:gloriajin55navercom@skuniv.ac.kr">gloriajin55navercom@skuniv.ac.kr</a></div>
+          <a class="email" href="mailto:gloriajin55navercom@skuniv.ac.kr" aria-label="이메일 보내기">이메일 보내기 ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>진은빈 · 스포츠앤테크놀로지</span>
+      <span>Profile / Curriculum Vitae</span>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const menu = document.querySelector('#primary-menu');
+      const toggle = document.querySelector('.menu-toggle');
+      const navLinks = [...document.querySelectorAll('.nav-links a')];
+      const sections = [...document.querySelectorAll('main section[id]')];
+
+      toggle.addEventListener('click', () => {
+        const isOpen = menu.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', String(isOpen));
+        toggle.setAttribute('aria-label', isOpen ? '메뉴 닫기' : '메뉴 열기');
+        toggle.textContent = isOpen ? '×' : '☰';
+      });
+
+      navLinks.forEach(link => {
+        link.addEventListener('click', event => {
+          const target = document.querySelector(link.getAttribute('href'));
+          if (!target) return;
+          event.preventDefault();
+          target.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+          history.replaceState(null, '', link.getAttribute('href'));
+          menu.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.setAttribute('aria-label', '메뉴 열기');
+          toggle.textContent = '☰';
+        });
+      });
+
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            navLinks.forEach(link => {
+              if (link.getAttribute('href') === `#${entry.target.id}`) {
+                link.setAttribute('aria-current', 'location');
+              } else {
+                link.removeAttribute('aria-current');
+              }
+            });
+          });
+        }, { rootMargin: '-25% 0px -65% 0px', threshold: 0 });
+        sections.forEach(section => observer.observe(section));
+      }
+    })();
+  </script>
+</body>
+</html>
